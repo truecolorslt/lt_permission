@@ -1,17 +1,21 @@
 package com.lt.permission.dao;
 
+import java.util.List;
+
 import com.lt.permission.model.Function;
 
 public interface FunctionDao {
-	int deleteByPrimaryKey(String fid);
+	public int deleteByPrimaryKey(String fid);
 
-	int insert(Function record);
+	public int insert(Function record);
 
-	int insertSelective(Function record);
+	public int insertSelective(Function record);
 
-	Function selectByPrimaryKey(String fid);
+	public Function selectByPrimaryKey(String fid);
 
-	int updateByPrimaryKeySelective(Function record);
+	public int updateByPrimaryKeySelective(Function record);
 
-	int updateByPrimaryKey(Function record);
+	public int updateByPrimaryKey(Function record);
+	
+	public List<Function> findFunctionTrees();
 }

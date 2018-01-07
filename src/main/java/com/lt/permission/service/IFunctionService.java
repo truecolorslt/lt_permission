@@ -13,4 +13,11 @@ public interface IFunctionService {
 	 * @return
 	 */
 	public List<Function> findFunctionTrees(String uid);
+
+	/**
+	 * 查询所有菜单
+	 * 
+	 * @return
+	 */
+	public List<Function> findAllFunctionTrees();
 }

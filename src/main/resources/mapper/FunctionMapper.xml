@@ -22,9 +22,11 @@
 		<result column="version" jdbcType="INTEGER" property="version" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		fid, fname, fcode, pfid, frelation, fsort, ficon, furl, ftarget, is_menu,
+		fid, fname, fcode, pfid, frelation, fsort, ficon, furl,
+		ftarget, is_menu,
 		is_expand,
-		remark, created_time, creator, modified_time, modifier, is_delete, version
+		remark, created_time, creator,
+		modified_time, modifier, is_delete, version
 	</sql>
 	<select id="selectByPrimaryKey" parameterType="java.lang.String"
 		resultMap="BaseResultMap">
@@ -34,26 +36,36 @@
 		where fid = #{fid,jdbcType=VARCHAR}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-		delete from t_function
+		delete from
+		t_function
 		where fid = #{fid,jdbcType=VARCHAR}
 	</delete>
 	<insert id="insert" parameterType="com.lt.permission.model.Function">
-		insert into t_function (fid, fname, fcode,
+		insert into t_function (fid,
+		fname, fcode,
 		pfid, frelation, fsort,
 		ficon, furl, ftarget,
-		is_menu, is_expand, remark,
+		is_menu,
+		is_expand, remark,
 		created_time, creator, modified_time,
-		modifier, is_delete, version
+		modifier,
+		is_delete, version
 		)
-		values (#{fid,jdbcType=VARCHAR}, #{fname,jdbcType=VARCHAR},
+		values (#{fid,jdbcType=VARCHAR},
+		#{fname,jdbcType=VARCHAR},
 		#{fcode,jdbcType=VARCHAR},
-		#{pfid,jdbcType=VARCHAR}, #{frelation,jdbcType=VARCHAR}, #{fsort,jdbcType=INTEGER},
-		#{ficon,jdbcType=VARCHAR}, #{furl,jdbcType=VARCHAR},
+		#{pfid,jdbcType=VARCHAR}, #{frelation,jdbcType=VARCHAR},
+		#{fsort,jdbcType=INTEGER},
+		#{ficon,jdbcType=VARCHAR},
+		#{furl,jdbcType=VARCHAR},
 		#{ftarget,jdbcType=VARCHAR},
-		#{isMenu,jdbcType=INTEGER}, #{isExpand,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR},
-		#{createdTime,jdbcType=TIMESTAMP}, #{creator,jdbcType=VARCHAR},
+		#{isMenu,jdbcType=INTEGER}, #{isExpand,jdbcType=INTEGER},
+		#{remark,jdbcType=VARCHAR},
+		#{createdTime,jdbcType=TIMESTAMP},
+		#{creator,jdbcType=VARCHAR},
 		#{modifiedTime,jdbcType=TIMESTAMP},
-		#{modifier,jdbcType=VARCHAR}, #{isDelete,jdbcType=INTEGER}, #{version,jdbcType=INTEGER}
+		#{modifier,jdbcType=VARCHAR}, #{isDelete,jdbcType=INTEGER},
+		#{version,jdbcType=INTEGER}
 		)
 	</insert>
 	<insert id="insertSelective" parameterType="com.lt.permission.model.Function">
@@ -231,22 +243,41 @@
 	<update id="updateByPrimaryKey" parameterType="com.lt.permission.model.Function">
 		update t_function
 		set fname = #{fname,jdbcType=VARCHAR},
-		fcode = #{fcode,jdbcType=VARCHAR},
+		fcode =
+		#{fcode,jdbcType=VARCHAR},
 		pfid = #{pfid,jdbcType=VARCHAR},
-		frelation = #{frelation,jdbcType=VARCHAR},
+		frelation =
+		#{frelation,jdbcType=VARCHAR},
 		fsort = #{fsort,jdbcType=INTEGER},
-		ficon = #{ficon,jdbcType=VARCHAR},
+		ficon
+		= #{ficon,jdbcType=VARCHAR},
 		furl = #{furl,jdbcType=VARCHAR},
-		ftarget = #{ftarget,jdbcType=VARCHAR},
+		ftarget =
+		#{ftarget,jdbcType=VARCHAR},
 		is_menu = #{isMenu,jdbcType=INTEGER},
 		is_expand = #{isExpand,jdbcType=INTEGER},
-		remark = #{remark,jdbcType=VARCHAR},
-		created_time = #{createdTime,jdbcType=TIMESTAMP},
-		creator = #{creator,jdbcType=VARCHAR},
-		modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
-		modifier = #{modifier,jdbcType=VARCHAR},
+		remark =
+		#{remark,jdbcType=VARCHAR},
+		created_time =
+		#{createdTime,jdbcType=TIMESTAMP},
+		creator =
+		#{creator,jdbcType=VARCHAR},
+		modified_time =
+		#{modifiedTime,jdbcType=TIMESTAMP},
+		modifier =
+		#{modifier,jdbcType=VARCHAR},
 		is_delete = #{isDelete,jdbcType=INTEGER},
 		version = #{version,jdbcType=INTEGER}
-		where fid = #{fid,jdbcType=VARCHAR}
+		where fid =
+		#{fid,jdbcType=VARCHAR}
 	</update>
+
+	<select id="findFunctionTrees" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_function
+		where is_delete=0
+		order by fsort
+	</select>
+
 </mapper>
