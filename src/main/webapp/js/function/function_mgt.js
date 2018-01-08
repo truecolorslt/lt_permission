@@ -31,7 +31,8 @@ function initFunctionTrees() {
 		edit : {
 			enable : true,
 			showRenameBtn : false,
-			removeTitle : "删除功能菜单"
+			removeTitle : "删除功能菜单",
+			showRemoveBtn : setRemoveBtn,
 		},
 		callback : {
 			onClick : getFunction,
@@ -114,4 +115,20 @@ function getFunction(event, treeId, treeNode) {
  */
 function isRootNode(treeId, treeNode, clickFlag) {
 	return treeNode.id != "0";
+}
+
+/**
+ * 判断为顶级节点
+ * 
+ * @param treeId
+ * @param treeNode
+ * @returns {Boolean}
+ */
+function setRemoveBtn(treeId, treeNode) {
+	// 判断为顶级节点则不显示删除按钮
+	if (treeNode.level == 0)
+		return false;
+	else
+		return true;
+
 }
