@@ -9,9 +9,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSONObject;
 import com.lt.permission.model.Function;
 import com.lt.permission.service.IFunctionService;
 import com.lt.permission.util.JsonUtils;
@@ -109,6 +111,36 @@ public class FunctionController extends BaseController {
 			e.printStackTrace();
 		}
 		return treesJson;
+	}
+
+	@RequestMapping(value = "/getFunction")
+	@ResponseBody
+	public String getFunction(@RequestBody String param) {
+		String rtnStr = "";
+		JSONObject jo = new JSONObject();
+
+		// 如果页面传的是json字符串，用下列方式解析
+		Map<String, Object> m = (Map<String, Object>) jo.parse(param);
+		// string转map
+		JSONObject parseObject = jo.parseObject(param); // string转json
+
+		// 如果页面传的是json数组字符串，用下列方式解析
+		// List<Map> parseArray = jo.parseArray(param, Map.class);
+		// System.out.println(parseArray); // string转list
+		//
+		// JSONArray parseArray2 = jo.parseArray(param);
+		// System.out.println(parseArray2);
+
+		String fid = parseObject.getString("fid");
+		try {
+			Function f = functionService.getFunction(fid);
+			if (f != null) {
+				rtnStr = this.toJSONObject(f).toString();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rtnStr;
 	}
 
 	/**

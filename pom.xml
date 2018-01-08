@@ -30,6 +30,7 @@
 		<commons-lang3.version>3.6</commons-lang3.version>
 		<json-lib.version>2.4</json-lib.version>
 		<slf4j-log4j12.version>1.7.5</slf4j-log4j12.version>
+		<com.alibaba.fastjson.version>1.2.44</com.alibaba.fastjson.version>
 	</properties>
 
 	<!-- 依赖包 -->
@@ -156,11 +157,8 @@
 			<artifactId>mybatis-spring</artifactId>
 			<version>${mybatis-spring.version}</version>
 		</dependency>
-		<!-- <dependency>
-			<groupId>net.sourceforge.jtds</groupId>
-			<artifactId>jtds</artifactId>
-			<version>${jtds.version}</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>net.sourceforge.jtds</groupId> <artifactId>jtds</artifactId> 
+			<version>${jtds.version}</version> </dependency> -->
 		<!-- mysql对应包依赖 -->
 		<dependency>
 			<groupId>mysql</groupId>
@@ -181,6 +179,11 @@
 			<artifactId>json-lib</artifactId>
 			<version>${json-lib.version}</version>
 			<classifier>jdk15</classifier>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>${com.alibaba.fastjson.version}</version>
 		</dependency>
 		<!-- json end -->
 

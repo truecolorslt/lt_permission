@@ -20,4 +20,12 @@ public interface IFunctionService {
 	 * @return
 	 */
 	public List<Function> findAllFunctionTrees();
+
+	/**
+	 * 根据id获取菜单对象
+	 * 
+	 * @param fid
+	 * @return
+	 */
+	public Function getFunction(String fid);
 }

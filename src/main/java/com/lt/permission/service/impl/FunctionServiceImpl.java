@@ -32,4 +32,10 @@ public class FunctionServiceImpl extends BaseServiceImpl implements
 		List<Function> functionList = functionDao.findFunctionTrees();
 		return functionList;
 	}
+
+	@Override
+	public Function getFunction(String fid) {
+		Function f = functionDao.selectByPrimaryKey(fid);
+		return f;
+	}
 }
